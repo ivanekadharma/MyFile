@@ -17,6 +17,23 @@ Route::get('/', function () {
 
 Route::get('/get_data', 'CobaController@get_data');
 
-Route::get('insert_data/{name}/{email}/{password}', 'CobaController@insert_user');
+Route::post('/insert_data/{name}/{email}/{password}', 'CobaController@insert_user');
+
 Route::get('update_data/{id}/{name}/{email}/{password}', 'CobaController@update_data');
+
 Route::get('delete_data/{id}', 'CobaController@delete_data');
+
+Route::get('get_data_article', 'CobaController@get_data_article');
+
+Route::get('get_insert_article/{title}/{body}/{images}', 'CobaController@get_insert_article');
+
+Route::get('updateArticle/{id}/{title}/{body}/{images}', 'CobaController@get_update_article');
+
+Route::get('deleteArticle/{id}', 'CobaController@get_delete_article');
+
+// Route::post('/testpost',function(){
+// 	return "Post received";
+// 	});
+
+
+
