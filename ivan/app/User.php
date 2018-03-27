@@ -12,7 +12,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'phoneNumb', 'id_device'
     ];
 
     /**
@@ -23,4 +23,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public static function getAllUser(){
+        return User::all();
+    }
+
+    public function getAllBannedUser(){
+        return User::where('banned', 1)->get();
+    }
 }

@@ -12,6 +12,6 @@ class VerifyCsrfToken extends BaseVerifier
      * @var array
      */
     protected $except = [
-        //
+         'insert_data', 'update_data', 'delete_data', 'get_data', 'pulsa', 'minus', 'wallet_minus', 'wallet_plus', 'DoLogin', 'login', 'get_user_details', 'register', 'wallet', 'pulsa_operators'
     ];
 }

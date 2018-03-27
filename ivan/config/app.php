@@ -156,6 +156,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        //tambahan untuk JWT, added by Ivan
+        'Tymon\JWTAuth\Providers\JWTAuthServiceProvider',
+        //end added
+
     ],
 
     /*
@@ -201,7 +205,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        //added by ivan
+        'JWTAuth' => 'Tymon\JWTAuth\Facades\JWTAuth',
     ],
 
 ];
