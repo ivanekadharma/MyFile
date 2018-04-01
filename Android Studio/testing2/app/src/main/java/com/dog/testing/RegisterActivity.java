@@ -16,7 +16,9 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -26,13 +28,15 @@ import org.w3c.dom.Text;
 
 public class RegisterActivity extends AppCompatActivity {
 
+    //source SQLITE: https://www.twoh.co/2013/01/24/android-database-sqlite-tutorial-ii-fungsi-create-data/
     private TextView mDisplayDate;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     EditText username, password, confirmPassword, phoneNumb;
+    private DBDataSource dataSource;
     CheckBox chkbox;
     Button btn_regis;
     //TextView error_msg, error_name, error_pwd, error_cpwd, error_dob, error_phoneNumb, error_agree;
-    //TextView DoBirth;
+    TextView DoBirth;
     TextView error_cpwd, error_phoneNumb;
 
     //start volley
@@ -56,6 +60,9 @@ public class RegisterActivity extends AppCompatActivity {
         chkbox = (CheckBox) findViewById(R.id.agreement);
         btn_regis = (Button) findViewById(R.id.btn_regis);
         phoneNumb = (EditText) findViewById(R.id.PhoneNumb);
+        DoBirth = (TextView) findViewById(R.id.DoBirth);
+
+
 //        error_msg = (TextView) findViewById(R.id.errorMessage);
 //
 //        error_name = (TextView) findViewById(R.id.error_name);
@@ -66,7 +73,7 @@ public class RegisterActivity extends AppCompatActivity {
         //error_agree = (CheckBox) findViewById(R.id.error_agree);
 
 
-        mDisplayDate = (TextView) findViewById(R.id.DOBirth);
+        mDisplayDate = (TextView) findViewById(R.id.DoBirth);
 
         mDisplayDate.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N) //ini tambahan, gaada ini, "cal" nya error
@@ -98,20 +105,34 @@ public class RegisterActivity extends AppCompatActivity {
             }
         };
 
+        dataSource = new DBDataSource(this); // ini bikin object baru
+        dataSource.open();
+
+
         btn_regis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String unamekey = username.getText().toString();
                 String passkey = password.getText().toString();
                 String cpasskey = confirmPassword.getText().toString();
-               // String DoB = mDisplayDate.getText().toString();
+                String DoBirth = mDisplayDate.getText().toString();
                 String numb = phoneNumb.getText().toString();
+
+                //variable penampung untuk save ke sqlite
+                String name = null;
+                String pwd = null;
+                String birthDate = null;
+                String phoneNumber = null;
+                @SuppressWarnings("unused")
 
 //                String ename = error_name.getText().toString();
 //                String epwd = error_pwd.getText().toString();
 //                String ecpwd = error_cpwd.getText().toString();
 //                String edob = error_dob.getText().toString();
 //                String enumb = error_phoneNumb.getText().toString();
+
+                //call class users
+                users users;
 
                 if(unamekey.isEmpty()) {
                    // error_name.setText("Username is required !");
@@ -123,6 +144,7 @@ public class RegisterActivity extends AppCompatActivity {
                     password.setError("Password is required !");
                 }
 
+                if()
                 if(cpasskey.isEmpty()){
                     error_cpwd.setText("Confirm password is required !");
 //                    confirmPassword.setError("Confirm password is required !");
@@ -134,6 +156,27 @@ public class RegisterActivity extends AppCompatActivity {
 //                    phoneNumb.setError("Phone Number is required !");
                 }
                 else{
+
+                    name = username.getText().toString();
+                    pwd = password.getText().toString();
+                    phoneNumber = phoneNumb.getText().toString();
+                    birthDate = DoBirth.getClass().toString();
+/*
+                    Switch(view.getId()){
+                        case R.id.btn_regis:
+
+                            users = dataSource.createNewUser(name, pwd, birthDate, phoneNumber);
+
+                            Toast.makeText(this, "new User\n" +
+                                    "nama" + users.getUsername() +
+                                    "password" + users.getPassword() +
+                                    "phoneNumber" + users.getPhoneNumb()+
+                                    "birthdate"+ users.getBirthDate(), Toast.LENGTH_LONG).show();
+                            break;
+                    }
+
+*/
+
                     finish();
                 }
 
